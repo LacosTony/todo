@@ -9,6 +9,9 @@ public class Todo {
     private String text;
     private long user_id;
 
+    public Todo() {
+    }
+
     public Todo(String text, long user_id) {
         this.text = text;
         this.user_id = user_id;
@@ -16,6 +19,10 @@ public class Todo {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getText() {
