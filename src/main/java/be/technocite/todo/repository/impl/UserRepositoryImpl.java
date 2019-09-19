@@ -22,6 +22,14 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public User findById(long id) {
+        return users.stream()
+                .filter(user -> user.getId()==id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
     public List<Todo> findAllTodo(User user) {
         return (List<Todo>) findByEmail(user.getEmail()).getTodoList();
     }

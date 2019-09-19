@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserRepository {
 
     User findByEmail(String email);
+    User findById(long id);
 
     List<Todo> findAllTodo(User user);
 
