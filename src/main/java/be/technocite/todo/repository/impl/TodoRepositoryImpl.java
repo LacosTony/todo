@@ -31,4 +31,9 @@ public class TodoRepositoryImpl implements TodoRepository {
 
         return findById(todo.getId());
     }
+
+    @Override
+    public List<Todo> findAll() {
+        return todos;
+    }
 }

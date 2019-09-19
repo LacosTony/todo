@@ -25,4 +25,16 @@ public class UserRepositoryImpl implements UserRepository {
     public List<Todo> findAllTodo(User user) {
         return (List<Todo>) findByEmail(user.getEmail()).getTodoList();
     }
+
+    @Override
+    public User save(User user) {
+        if(findByEmail(user.getEmail()) == null) {
+            users.add(user);
+        }else {
+            users.remove(user);
+            users.add(user);
+        }
+
+        return findByEmail(user.getEmail());
+    }
 }

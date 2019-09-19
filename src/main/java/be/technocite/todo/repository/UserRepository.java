@@ -10,4 +10,6 @@ public interface UserRepository {
     User findByEmail(String email);
 
     List<Todo> findAllTodo(User user);
+
+    User save(User user);
 }
