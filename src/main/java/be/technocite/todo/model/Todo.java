@@ -17,6 +17,12 @@ public class Todo {
         this.user_id = user_id;
     }
 
+    public Todo(long id, String text, long user_id) {
+        this.id = id;
+        this.text = text;
+        this.user_id = user_id;
+    }
+
     public long getId() {
         return id;
     }

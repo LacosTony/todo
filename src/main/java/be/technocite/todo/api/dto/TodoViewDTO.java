@@ -1,14 +1,16 @@
 package be.technocite.todo.api.dto;
 
+import be.technocite.todo.model.User;
+
 public class TodoViewDTO {
 
     private String text;
-    private UserInfoDTO user;
+    private User user;
 
     public TodoViewDTO() {
     }
 
-    public TodoViewDTO(String text, UserInfoDTO user) {
+    public TodoViewDTO(String text, User user) {
         this.text = text;
         this.user = user;
     }
@@ -21,11 +23,11 @@ public class TodoViewDTO {
         this.text = text;
     }
 
-    public UserInfoDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUsername(UserInfoDTO user) {
+    public void setUsername(User user) {
         this.user = user;
     }
 
