@@ -2,20 +2,20 @@ package be.technocite.todo.service;
 
 import be.technocite.todo.api.dto.UserInfoDTO;
 import be.technocite.todo.api.dto.UserRegistrationDto;
+import be.technocite.todo.model.Role;
 import be.technocite.todo.model.User;
 import be.technocite.todo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -41,9 +41,8 @@ public class UserService implements UserDetailsService {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
-
-        //Todo Il faut passer un DTO en paramètre de cette méthode et passer les valeurs dans les setters de notre user
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
 
         return userRepository.save(user);
     }
@@ -57,10 +56,14 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
-                //todo a Collection<? extends GrantedAuthorities>
-                null
+                mapRolesToAuthorities(user.getRoles())
         );
-         //Todo
+    }
+
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
     }
 
     private UserInfoDTO convertToInfoDTO(User user){

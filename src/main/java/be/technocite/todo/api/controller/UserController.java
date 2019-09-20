@@ -1,6 +1,5 @@
 package be.technocite.todo.api.controller;
 
-import be.technocite.todo.api.dto.UserInfoDTO;
 import be.technocite.todo.model.User;
 import be.technocite.todo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user-info")
 public class UserController {
 
     @Autowired

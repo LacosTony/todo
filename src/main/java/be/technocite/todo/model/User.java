@@ -13,6 +13,7 @@ public class User {
     private String password;
 
     private Collection<Todo> todoList;
+    private Collection<Role> roles;
 
     public User() {
     }
@@ -26,6 +27,10 @@ public class User {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -66,6 +71,14 @@ public class User {
 
     public void setTodoList(Collection<Todo> todoList) {
         this.todoList = todoList;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
